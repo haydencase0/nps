@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="checkbox" name="open" id="open">
+    <label for="open">Open</label>
+    <div>
+        <p id="parkStatus">The Park is Closed</p>
+    </div>
+    <div>
+        <input type="text" name="age" id="age">
+        <label for="age">Age</label>
+        <input type="text" name="height" id="height">
+        <label for="height">Height</label>
+        <p id="ride">You cannot ride the COLLOSUS!</p>
+    </div>
+</body>
+</html>
+
+<script>
+    const checkbox = document.querySelector('#open');
+    const parkStatus = document.querySelector('#parkStatus');
+    const rideMessage = document.querySelector('#ride');
+
+    checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+            parkStatus.textContent = 'The Park is Open';
+        } else {
+            parkStatus.textContent = 'The Park is Closed';
+        }
+    });
+
+    const ageInput = document.querySelector('#age');
+    const heightInput = document.querySelector('#height');
+
+    ageInput.addEventListener('input', checkRideEligibility);
+    heightInput.addEventListener('input', checkRideEligibility);
+
+    function checkRideEligibility() {
+        const age = ageInput.value;
+        const height = heightInput.value;
+
+        if(age > 16 || (age>=14 && height >= 60)) {
+            rideMessage.textContent = 'You can ride the COLLOSUS!';
+        } else {
+            rideMessage.textContent = 'You cannot ride the COLLOSUS!';
+        }
+    }
+</script>
