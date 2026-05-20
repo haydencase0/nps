@@ -7,14 +7,20 @@ const url = "https://developer.nps.gov/api/v1/parks?parkCode=yell";
 // Fetch data using request headers
 async function getPark() {
   const response = await fetch(url, {
-    headers: {
+    headers: { 
       "X-Api-Key": apiKey
     }
   });
 
   const data = await response.json();
+  // let data = await response.text();
+  // data = JSON.parse(data);
 
   console.log(data);
+  const parkTag = document.getElementById("park-info");
+
+  parkTag.innerText = JSON.stringify(data);
+
 }
 
 getPark();
