@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Test</title>
+</head>
+<body>
+    <form id="myform">
+        <div id="global-errors"></div>
+        <div id="firstNameContainer">
+            <label>First Name : 
+                <input id="firstName" name="firstName" minlength="5" maxlength="50">
+            </label>
+            <div id="first-name-error"></div>
+        </div>
+        <button>Submit</button>
+    </form>
+</body>
+<script>
+    const myForm = document.getElementById("myForm")
+    const firstNameInput = document.getElementById("firstName")
+    const firstNameError = document.getElementById("first-name-error")
+
+    function validateFirstName(){
+        if(!firstNameInput.validity.valid){
+            firstNameError.innerHTML = `<p>Name is not 5-50 characters</p>`
+            return true
+        }
+        return false
+    }
+
+    firstNameInput.addEventListener("blur", () => {
+        validateFirstName()
+    })
+
+    myForm.addEventListener("submit", (event) => {
+        event.preventDefault()
+
+        if(!validateFirstName()){
+            document.getElementById("global-errors").innerHTML = `<p>Correct errors before submitting</p>`
+            return;
+        }
+        event.submit()
+    })
+</script>
+</html>

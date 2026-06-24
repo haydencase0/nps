@@ -1,5 +1,6 @@
 import { fetchMenuData, fetchParkData, fetchParkSelectorData } from "./api.js";
 import { addFavorite } from "./storage.js";
+import { initFeedback } from './feedback.js';
 import {
   renderHeaderMenu,
   renderParkMenu,
@@ -35,6 +36,7 @@ async function init() {
   setActiveSection("info");
   wireSectionMenus();
   setupMapModalAndPromotions();
+  initFeedback();
 
   const parks = await fetchParkSelectorData();
   renderFavorites(buildParkUrl);
